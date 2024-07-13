@@ -6,8 +6,11 @@ module.exports = {
       colors: {
         sidebarBgColor: "#3F4D67",
         menuActiveColor: "#1DC4E9",
-        menuDeactiveColor: "#DBDBDB",
+        menuDeactiveColor: "#A9B7D0",
       },
+    },
+    fontFamily: {
+      nexon: ["NEXON Lv1 Gothic OTF"],
     },
   },
   plugins: [],

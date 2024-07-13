@@ -3,8 +3,9 @@ import StudentManagementLayout from "./StudentManagementLayout";
 import Login from "./Login";
 import Consulting from "./kyh/Consulting";
 import AttendanceDashboard from "./kde/AttendanceDashboard";
-import ColorChips from "./james/PassiveCheck";
+
 import Home from "./Home";
+import PassiveCheck from "./james/PassiveCheck";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route element={<StudentManagementLayout />}>
           <Route path="/" Component={Home} />
           <Route path="/Login" Component={Login} />
-          <Route path="/PassiveCheck" Component={ColorChips} />
+          <Route path="/PassiveCheck" Component={PassiveCheck} />
           <Route path="/AttendanceDashboard" Component={AttendanceDashboard} />
           <Route path="/Consulting" Component={Consulting} />
         </Route>
