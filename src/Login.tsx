@@ -22,7 +22,10 @@ const Login = () => {
           />
         </div>
 
-        <button className="w-full px-10 py-3 rounded-full bg-sky-700 text-white text-2xl  font-bold ">
+        <button
+          onClick={() => alert("아이디 혹은 패스워드가 잘못 되었습니다.")}
+          className="w-full px-10 py-3 rounded-full bg-sky-700 text-white text-2xl  font-bold "
+        >
           Login
         </button>
 
