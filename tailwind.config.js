@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        sidebarColor: "#3F4D67",
-        menuColor: "#1DC4E9",
+        sidebarBgColor: "#3F4D67",
+        menuActiveColor: "#1DC4E9",
+        menuDeactiveColor: "#DBDBDB",
       },
     },
   },
