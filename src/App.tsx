@@ -1,17 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, BrowserRouter, Routes} from 'react-router-dom';
-import AttendanceDashboard from './kde/AttendanceDashboard';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import StudentManagementLayout from "./StudentManagementLayout";
+import Login from "./Login";
+import Consulting from "./kyh/Consulting";
 
 function App() {
-  return(
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<AttendanceDashboard />} />
-        </Routes>
-      </div>
-    </Router>
-  )
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<StudentManagementLayout />}>
+          <Route path="/" Component={Login} />
+          {/* <Route path="/PassiveCheck" Component={PassiveCheck} />
+          <Route path="/AttendanceDashboard" Component={AttendanceDashboard} /> */}
+          <Route path="/Consulting" Component={Consulting} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
