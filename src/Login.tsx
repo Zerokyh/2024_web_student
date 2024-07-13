@@ -1,6 +1,6 @@
 const Login = () => {
   return (
-    <div className="max-w-screen-xl w-svw h-full flex flex-col justify-center items-center gap-10 font-nexon">
+    <div className="max-w-screen-2xl w-svw h-full flex flex-col justify-center items-center gap-10 font-nexon">
       <div className="max-w-sm w-full flex flex-col justify-center items-center gap-10 border border-sky-100 rounded-xl p-10">
         <div className="font-handwriting font-bold text-sky-700 text-3xl">
           Login

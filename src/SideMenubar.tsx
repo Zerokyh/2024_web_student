@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { BiBookContent } from "react-icons/bi";
 import { BsPersonVideo3 } from "react-icons/bs";
+import { LuAlarmClock } from "react-icons/lu";
 
 const SideMenuBar = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const SideMenuBar = () => {
           <div className="flex items-center text-lg">
             <BsPersonVideo3 />
           </div>
-          상담 관리
+          학생 관리
         </button>
       </div>
       <div className="w-full h-16 py-5 flex justify-around">
@@ -61,7 +62,10 @@ const SideMenuBar = () => {
           로그인
         </span>
       </div>
-      <Time />
+      <div className="flex justify-center items-center gap-3 text-lg text-menuActiveColor">
+        <LuAlarmClock />
+        <Time />
+      </div>
     </div>
   );
 };

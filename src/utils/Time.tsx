@@ -10,7 +10,7 @@ const Time = () => {
   }, 1000);
 
   return (
-    <Moment format="HH:mm:ss" className="text-center">
+    <Moment format="HH:mm:ss" className="text-base animate-blink">
       {currentTime}
     </Moment>
   );

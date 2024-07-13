@@ -6,6 +6,7 @@ import AttendanceDashboard from "./kde/AttendanceDashboard";
 
 import Home from "./Home";
 import PassiveCheck from "./james/PassiveCheck";
+import Qrcode from "./Qrcode";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/PassiveCheck" Component={PassiveCheck} />
           <Route path="/AttendanceDashboard" Component={AttendanceDashboard} />
           <Route path="/Consulting" Component={Consulting} />
+          <Route path="/Qrcode" Component={Qrcode} />
         </Route>
       </Routes>
     </BrowserRouter>
