@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+import * as React from "react";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
 
 export default function ColorChips() {
   return (
@@ -17,4 +17,4 @@ export default function ColorChips() {
       </Stack>
     </Stack>
   );
-}; 
+}
