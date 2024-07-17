@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Time from "./utils/Time";
 import { FaHome } from "react-icons/fa";
 import { FaRegCalendarCheck } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { LuAlarmClock } from "react-icons/lu";
 
 const SideMenuBar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <div className="flex flex-col px-7 py-1 w-fit h-full text-sm justify-evenly bg-sidebarBgColor text-menuDeactiveColor text-nexon">
@@ -57,7 +58,7 @@ const SideMenuBar = () => {
         </span>
         <span
           className="text-xs hover:text-menuActiveColor cursor-pointer"
-          onClick={() => navigate("/Login")}
+          onClick={() => navigate("/Login", { state: pathname })}
         >
           로그인
         </span>

@@ -1,4 +1,20 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const Consulting = () => {
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8001/data")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
+
   return (
     <>
       <div className="max-w-screen-2xl w-svw h-full flex justify-center items-center gap-10 mx-auto">
@@ -24,16 +40,14 @@ const Consulting = () => {
             </select>
           </div>
 
-          <div className="border h-studentMediumHight px-2 py-2">
+          <div className="border h-studentMediumHight px-2 py-2 overflow-y-scroll">
             <span>학생 리스트</span>
             <div className="flex list-none justify-around">
-              <li>학생ID</li>
-              <li>이름</li>
-              <li>나이</li>
-              <li>연락처</li>
-              <li>성적</li>
-              <li>출석률</li>
-              <li>상담정보</li>
+              <ul>
+                {data.map((item, index) => (
+                  <li key={index}>{JSON.stringify(item)}</li>
+                ))}
+              </ul>
             </div>
           </div>
           <div className="border h-studentLowHight px-2 py-2 flex flex-col gap-2">
