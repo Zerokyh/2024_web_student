@@ -52,7 +52,10 @@ const Login = () => {
           />
         </div>
 
-        <button className="w-full px-10 py-3 rounded-full bg-sky-700 text-white text-2xl  font-bold ">
+        <button
+          className="w-full px-10 py-3 rounded-full bg-sky-700 text-white text-2xl  font-bold "
+          onClick={handleLogin}
+        >
           Login
         </button>
 
