@@ -39,6 +39,7 @@ module.exports = {
       },
 
       width: {
+        studentBasicWidthLeft: "260px",
         studentMaxWidthRight: "800px",
       },
 

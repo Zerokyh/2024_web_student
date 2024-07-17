@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import StudentManagementLayout from "./StudentManagementLayout";
+
 import Login from "./Login";
 import Consulting from "./kyh/Consulting";
 import AttendanceDashboard from "./kde/AttendanceDashboard";
 import Home from "./Home";
 import PassiveCheck from "./james/PassiveCheck";
 import Qrcode from "./Qrcode";
+import StudentManagementLayout from "./StudentManagementLayout";
 
 function App() {
   return (
