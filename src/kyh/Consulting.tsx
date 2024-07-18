@@ -1,8 +1,20 @@
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Consulting = () => {
   const [data, setData] = useState<any[]>([]);
+  const [Course, setCourse] = useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCourse(event.target.value as string);
+  };
 
   useEffect(() => {
     axios
@@ -31,13 +43,21 @@ const Consulting = () => {
           </div>
         </div>
         <div className="flex flex-col  w-studentMaxWidthRight h-studentMaxHight">
-          <div>
-            Class :
-            <select name="className" id="class">
-              <option value="">햇님반</option>
-              <option value="">별님반</option>
-              <option value="">달님반</option>
-            </select>
+          <div className="w-60">
+            <FormControl fullWidth>
+              <InputLabel id="select-course-label">Course</InputLabel>
+              <Select
+                labelId="select-course-label"
+                id="select_Course"
+                value={Course}
+                label="Course"
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Python 반</MenuItem>
+                <MenuItem value={20}>Java 반</MenuItem>
+                <MenuItem value={30}>웹 개발반</MenuItem>
+              </Select>
+            </FormControl>
           </div>
 
           <div className="border h-studentMediumHight px-2 py-2 overflow-y-scroll">
