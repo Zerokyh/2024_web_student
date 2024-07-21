@@ -12,6 +12,7 @@ const Login = () => {
       .post("http://localhost:8001/login", { id, password })
       .then((response) => {
         alert(response.data.message);
+        sessionStorage.setItem("user_id", id);
       })
       .then(() => {
         navigate(state);
