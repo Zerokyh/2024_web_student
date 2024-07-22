@@ -6,6 +6,7 @@ const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const { state } = useLocation();
+
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
@@ -13,8 +14,6 @@ const Login = () => {
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);
-      })
-      .then(() => {
         navigate(state);
       })
       .catch((error) => {

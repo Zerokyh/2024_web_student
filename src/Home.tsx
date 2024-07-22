@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
 import QrCodeIcon from "@mui/icons-material/QrCode";
+import { useEffect } from "react";
+import useThemeStore from "./store/store";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { isLogin, setIsLogin } = useThemeStore();
+
+  useEffect(() => {
+    const userId = sessionStorage.getItem("user_id");
+    setIsLogin(userId !== null);
+  }, [setIsLogin]);
+
   return (
     <>
       <div className="relative  w-full h-full font-nexon text-4xl flex justify-center items-center">
@@ -15,7 +24,11 @@ const Home = () => {
             className="w-fit z-10 animate-tracking-in-contract text-base hover:text-menuActiveColor cursor-pointer flex gap-4"
             onClick={() => navigate("/Qrcode")}
           >
-            <QrCodeIcon /> QR 출석체크
+            {isLogin && (
+              <>
+                <QrCodeIcon /> QR 출석체크
+              </>
+            )}
           </div>
         </div>
       </div>
