@@ -6,6 +6,7 @@ import { BiBookContent } from "react-icons/bi";
 import { BsPersonVideo3 } from "react-icons/bs";
 import { LuAlarmClock } from "react-icons/lu";
 import useThemeStore from "./store/store";
+import ThemeToggleButton from "./utils/ThemeToggleButton";
 
 const SideMenuBar = () => {
   const navigate = useNavigate();
@@ -89,6 +90,9 @@ const SideMenuBar = () => {
       <div className="flex justify-center items-center gap-3 text-lg text-menuActiveColor">
         <LuAlarmClock />
         <Time />
+      </div>
+      <div className="flex justify-center items-center my-5">
+        <ThemeToggleButton />
       </div>
     </div>
   );

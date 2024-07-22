@@ -1,10 +1,16 @@
 import { Outlet } from "react-router-dom";
 import SideMenuBar from "./SideMenubar";
+import useThemeStore from "./store/store";
 
 const StudentManagementLayout = () => {
+  const { theme } = useThemeStore();
   return (
     <>
-      <div className="w-screen h-svh flex">
+      <div
+        className={`w-screen h-svh flex ${
+          theme === "Light" ? "bg-white text-black" : "bg-darkmode text-white"
+        }`}
+      >
         <div className="w-1/5">
           <SideMenuBar />
         </div>

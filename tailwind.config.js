@@ -36,6 +36,7 @@ module.exports = {
         sidebarBgColor: "#3F4D67",
         menuActiveColor: "#1DC4E9",
         menuDeactiveColor: "#A9B7D0",
+        darkmode: "#1E1E20",
       },
 
       width: {
