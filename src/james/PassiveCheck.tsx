@@ -1,6 +1,6 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import './PassiveCheck.css';
-import { format, addDays } from 'date-fns';
+import React, { useState, useEffect, ChangeEvent } from "react";
+import "./PassiveCheck.css";
+import { format, addDays } from "date-fns";
 
 type Time = {
   attendanceHour: string;
@@ -30,11 +30,106 @@ interface Student {
 type StatusField = keyof Status;
 
 const initialStudents: Student[] = [
-  { id: 1, name: "김인성", school: "반포초등학교", time: { attendanceHour: "", attendanceMinute: "", leaveHour: "", leaveMinute: "" }, status: { present: false, late: false, absent: false, leave: false, earlyLeave: false, runaway: false }, memo: "" },
-  { id: 2, name: "이지선", school: "대명초등학교", time: { attendanceHour: "", attendanceMinute: "", leaveHour: "", leaveMinute: "" }, status: { present: false, late: false, absent: false, leave: false, earlyLeave: false, runaway: false }, memo: "" },
-  { id: 3, name: "이한명", school: "대유초등학교", time: { attendanceHour: "", attendanceMinute: "", leaveHour: "", leaveMinute: "" }, status: { present: false, late: false, absent: false, leave: false, earlyLeave: false, runaway: false }, memo: "" },
-  { id: 4, name: "정보해", school: "양원초등학교", time: { attendanceHour: "", attendanceMinute: "", leaveHour: "", leaveMinute: "" }, status: { present: false, late: false, absent: false, leave: false, earlyLeave: false, runaway: false }, memo: "" },
-  { id: 5, name: "홍길동", school: "상일초등학교", time: { attendanceHour: "", attendanceMinute: "", leaveHour: "", leaveMinute: "" }, status: { present: false, late: false, absent: false, leave: false, earlyLeave: false, runaway: false }, memo: "" },
+  {
+    id: 1,
+    name: "김인성",
+    school: "반포초등학교",
+    time: {
+      attendanceHour: "",
+      attendanceMinute: "",
+      leaveHour: "",
+      leaveMinute: "",
+    },
+    status: {
+      present: false,
+      late: false,
+      absent: false,
+      leave: false,
+      earlyLeave: false,
+      runaway: false,
+    },
+    memo: "",
+  },
+  {
+    id: 2,
+    name: "이지선",
+    school: "대명초등학교",
+    time: {
+      attendanceHour: "",
+      attendanceMinute: "",
+      leaveHour: "",
+      leaveMinute: "",
+    },
+    status: {
+      present: false,
+      late: false,
+      absent: false,
+      leave: false,
+      earlyLeave: false,
+      runaway: false,
+    },
+    memo: "",
+  },
+  {
+    id: 3,
+    name: "이한명",
+    school: "대유초등학교",
+    time: {
+      attendanceHour: "",
+      attendanceMinute: "",
+      leaveHour: "",
+      leaveMinute: "",
+    },
+    status: {
+      present: false,
+      late: false,
+      absent: false,
+      leave: false,
+      earlyLeave: false,
+      runaway: false,
+    },
+    memo: "",
+  },
+  {
+    id: 4,
+    name: "정보해",
+    school: "양원초등학교",
+    time: {
+      attendanceHour: "",
+      attendanceMinute: "",
+      leaveHour: "",
+      leaveMinute: "",
+    },
+    status: {
+      present: false,
+      late: false,
+      absent: false,
+      leave: false,
+      earlyLeave: false,
+      runaway: false,
+    },
+    memo: "",
+  },
+  {
+    id: 5,
+    name: "홍길동",
+    school: "상일초등학교",
+    time: {
+      attendanceHour: "",
+      attendanceMinute: "",
+      leaveHour: "",
+      leaveMinute: "",
+    },
+    status: {
+      present: false,
+      late: false,
+      absent: false,
+      leave: false,
+      earlyLeave: false,
+      runaway: false,
+    },
+    memo: "",
+  },
 ];
 
 const classes = ["초등학교대비", "중학교대비", "고등학교대비", "수능대비"];
@@ -44,10 +139,12 @@ const App: React.FC = () => {
   const [classType, setClassType] = useState<string>(classes[0]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const [attendanceData, setAttendanceData] = useState<{ [key: string]: Student[] }>({});
+  const [attendanceData, setAttendanceData] = useState<{
+    [key: string]: Student[];
+  }>({});
 
   useEffect(() => {
-    const formattedDate = format(currentDate, 'yyyy-MM-dd');
+    const formattedDate = format(currentDate, "yyyy-MM-dd");
     if (attendanceData[formattedDate]) {
       setStudents(attendanceData[formattedDate]);
     } else {
@@ -64,7 +161,9 @@ const App: React.FC = () => {
   };
 
   const handleSearch = () => {
-    const filteredStudents = initialStudents.filter(student => student.name.includes(searchQuery));
+    const filteredStudents = initialStudents.filter((student) =>
+      student.name.includes(searchQuery)
+    );
     setStudents(filteredStudents);
   };
 
@@ -73,21 +172,33 @@ const App: React.FC = () => {
   };
 
   const handleChange = (id: number, field: keyof Student, value: any) => {
-    setStudents(students.map(student =>
-      student.id === id ? { ...student, [field]: value } : student
-    ));
+    setStudents(
+      students.map((student) =>
+        student.id === id ? { ...student, [field]: value } : student
+      )
+    );
   };
 
   const handleStatusChange = (id: number, statusField: StatusField) => {
-    setStudents(students.map(student =>
-      student.id === id ? { ...student, status: { ...student.status, [statusField]: !student.status[statusField] } } : student
-    ));
+    setStudents(
+      students.map((student) =>
+        student.id === id
+          ? {
+              ...student,
+              status: {
+                ...student.status,
+                [statusField]: !student.status[statusField],
+              },
+            }
+          : student
+      )
+    );
   };
 
   const handleSave = () => {
-    const formattedDate = format(currentDate, 'yyyy-MM-dd');
+    const formattedDate = format(currentDate, "yyyy-MM-dd");
     setAttendanceData({ ...attendanceData, [formattedDate]: students });
-    console.log(students);  // You can replace this with actual save logic
+    console.log(students); // You can replace this with actual save logic
   };
 
   const handleReset = () => {
@@ -95,9 +206,13 @@ const App: React.FC = () => {
   };
 
   const total = students.length;
-  const presentCount = students.filter(student => student.status.present).length;
-  const lateCount = students.filter(student => student.status.late).length;
-  const absentCount = students.filter(student => student.status.absent).length;
+  const presentCount = students.filter(
+    (student) => student.status.present
+  ).length;
+  const lateCount = students.filter((student) => student.status.late).length;
+  const absentCount = students.filter(
+    (student) => student.status.absent
+  ).length;
 
   return (
     <div className="App">
@@ -105,7 +220,9 @@ const App: React.FC = () => {
       <div className="controls">
         <select value={classType} onChange={handleClassChange}>
           {classes.map((cls, index) => (
-            <option key={index} value={cls}>{cls}</option>
+            <option key={index} value={cls}>
+              {cls}
+            </option>
           ))}
         </select>
         <input
@@ -118,7 +235,7 @@ const App: React.FC = () => {
         <button onClick={handleSearch}>검색</button>
         <div className="date-controls">
           <button onClick={() => handleDateChange(-1)}>◀</button>
-          <span>{format(currentDate, 'yyyy-MM-dd')}</span>
+          <span>{format(currentDate, "yyyy-MM-dd")}</span>
           <button onClick={() => handleDateChange(1)}>▶</button>
         </div>
       </div>
@@ -140,22 +257,34 @@ const App: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map(student => (
+          {students.map((student) => (
             <tr key={student.id}>
               <td>{student.id}</td>
-              <td>{student.name} ({student.school})</td>
+              <td>
+                {student.name} ({student.school})
+              </td>
               <td>
                 <input
                   type="text"
                   value={student.time.attendanceHour}
-                  onChange={e => handleChange(student.id, 'time', { ...student.time, attendanceHour: e.target.value })}
+                  onChange={(e) =>
+                    handleChange(student.id, "time", {
+                      ...student.time,
+                      attendanceHour: e.target.value,
+                    })
+                  }
                   className="time-input"
                 />
                 :
                 <input
                   type="text"
                   value={student.time.attendanceMinute}
-                  onChange={e => handleChange(student.id, 'time', { ...student.time, attendanceMinute: e.target.value })}
+                  onChange={(e) =>
+                    handleChange(student.id, "time", {
+                      ...student.time,
+                      attendanceMinute: e.target.value,
+                    })
+                  }
                   className="time-input"
                 />
               </td>
@@ -163,30 +292,54 @@ const App: React.FC = () => {
                 <input
                   type="text"
                   value={student.time.leaveHour}
-                  onChange={e => handleChange(student.id, 'time', { ...student.time, leaveHour: e.target.value })}
+                  onChange={(e) =>
+                    handleChange(student.id, "time", {
+                      ...student.time,
+                      leaveHour: e.target.value,
+                    })
+                  }
                   className="time-input"
                 />
                 :
                 <input
                   type="text"
                   value={student.time.leaveMinute}
-                  onChange={e => handleChange(student.id, 'time', { ...student.time, leaveMinute: e.target.value })}
+                  onChange={(e) =>
+                    handleChange(student.id, "time", {
+                      ...student.time,
+                      leaveMinute: e.target.value,
+                    })
+                  }
                   className="time-input"
                 />
               </td>
               <td className="status-buttons">
-                {(['present', 'late', 'absent', 'leave', 'earlyLeave', 'runaway'] as StatusField[]).map(statusField => (
+                {(
+                  [
+                    "present",
+                    "late",
+                    "absent",
+                    "leave",
+                    "earlyLeave",
+                    "runaway",
+                  ] as StatusField[]
+                ).map((statusField) => (
                   <button
                     key={statusField}
-                    className={student.status[statusField] ? 'active' : ''}
+                    className={student.status[statusField] ? "active" : ""}
                     onClick={() => handleStatusChange(student.id, statusField)}
                   >
-                    {statusField === 'present' ? '출석' :
-                     statusField === 'late' ? '지각' :
-                     statusField === 'absent' ? '결석' :
-                     statusField === 'leave' ? '귀가' :
-                     statusField === 'earlyLeave' ? '조퇴' :
-                     '도망'}
+                    {statusField === "present"
+                      ? "출석"
+                      : statusField === "late"
+                      ? "지각"
+                      : statusField === "absent"
+                      ? "결석"
+                      : statusField === "leave"
+                      ? "귀가"
+                      : statusField === "earlyLeave"
+                      ? "조퇴"
+                      : "도망"}
                   </button>
                 ))}
               </td>
@@ -194,7 +347,9 @@ const App: React.FC = () => {
                 <input
                   type="text"
                   value={student.memo}
-                  onChange={e => handleChange(student.id, 'memo', e.target.value)}
+                  onChange={(e) =>
+                    handleChange(student.id, "memo", e.target.value)
+                  }
                 />
               </td>
             </tr>

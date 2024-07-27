@@ -61,10 +61,26 @@ const Consulting = () => {
 
         <div className="border h-studentMediumHight px-2 py-2 overflow-y-scroll">
           <span>학생 리스트</span>
-          <div className="flex list-none justify-around ">
-            <ul>
+          <div className="flex list-none justify-around text-center">
+            <li className="w-20">학생ID</li>
+            <li className="w-20">이름</li>
+            <li className="w-20">성적</li>
+            <li className="w-20">출석률</li>
+            <li className="w-20">상담일자</li>
+          </div>
+          <div className="w-full flex list-none justify-around">
+            <ul className="w-full">
               {data.map((item, index) => (
-                <li key={index}>{JSON.stringify(item)}</li>
+                <li
+                  key={index}
+                  className="w-full flex justify-around text-center"
+                >
+                  <span className="w-20">{item.id}</span>
+                  <span className="w-20">{item.name}</span>
+                  <span className="w-20">{item.phone}</span>
+                  <span className="w-20">{item.address}</span>
+                  <span className="w-20">{item.address}</span>
+                </li>
               ))}
             </ul>
           </div>
