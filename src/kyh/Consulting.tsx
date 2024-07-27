@@ -28,7 +28,7 @@ const Consulting = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen flex justify-center items-center gap-10 mx-auto my-auto">
+    <div className="max-w-screen-xl h-screen flex justify-center items-center gap-10 mx-auto my-auto">
       <div className="border w-80 h-studentMaxHight">
         <div className="w-full h-full flex flex-col list-none justify-center items-center">
           <div>학생을 선택하세요 😐</div>
