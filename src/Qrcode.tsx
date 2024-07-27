@@ -21,7 +21,7 @@ const Qrcode = () => {
   const qrcodeValue = transTime.props.children.toLocaleTimeString("it-IT");
   return (
     <>
-      <div className="w-full h-full flex flex-col justify-center items-center gap-5 text-nexon">
+      <div className="w-full h-studentMaxHight flex flex-col justify-center items-center gap-5 text-nexon">
         <div className="flex text-xl justify-center items-center gap-4">
           <LuAlarmClock />
           현재 출석 시간 : {transTime}
