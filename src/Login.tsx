@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import useThemeStore from "./store/store";
 
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const { state } = useLocation();
-
+  const { isLogin, setIsLogin } = useThemeStore();
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
@@ -14,6 +15,9 @@ const Login = () => {
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);
+        setIsLogin(true);
+      })
+      .then(() => {
         navigate(state);
       })
       .catch((error) => {
@@ -26,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-10 font-nexon">
+    <div className="w-full h-studentMaxHight flex flex-col justify-center items-center gap-10 font-nexon">
       <div className="max-w-sm w-full flex flex-col justify-center items-center gap-10 border border-sky-100 rounded-xl p-10">
         <div className="font-handwriting font-bold text-sky-700 text-3xl">
           Login

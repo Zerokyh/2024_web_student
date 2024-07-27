@@ -15,20 +15,20 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative  w-full h-full font-nexon text-4xl flex justify-center items-center">
+      <div className="relative w-full h-studentMaxHight font-nexon text-4xl flex justify-center items-center">
         <div className="flex flex-col gap-6">
           <div className="z-10 animate-tracking-in-contract">
             <AssuredWorkloadIcon /> 학생 출결 관리 프로그램
           </div>
           <div
-            className="w-fit z-10 animate-tracking-in-contract text-base hover:text-menuActiveColor cursor-pointer flex gap-4"
+            className={
+              isLogin
+                ? "w-fit z-10 animate-tracking-in-contract text-base hover:text-menuActiveColor cursor-pointer flex gap-4"
+                : "hidden"
+            }
             onClick={() => navigate("/Qrcode")}
           >
-            {isLogin && (
-              <>
-                <QrCodeIcon /> QR 출석체크
-              </>
-            )}
+            <QrCodeIcon /> QR 출석체크
           </div>
         </div>
       </div>
