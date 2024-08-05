@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
-type LoginState = {
+type SetState = {
   isLogin: boolean;
   setIsLogin: (isLogin: boolean) => void;
 };
 
-const useThemeStore = create<LoginState>((set) => ({
+const useThemeStore = create<SetState>((set) => ({
   isLogin: false,
   setIsLogin: (isLogin) => set({ isLogin }),
 }));
