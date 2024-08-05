@@ -65,7 +65,12 @@ const Login = () => {
 
         <div className="w-full flex justify-between text-sm">
           <span className="cursor-pointer">아이디 찾기</span>
-          <span className="cursor-pointer">회원가입</span>
+          <span
+            className="cursor-pointer"
+            onClick={() => navigate("/UserRegister")}
+          >
+            회원가입
+          </span>
           <span className="cursor-pointer">비밀번호 찾기</span>
         </div>
       </div>

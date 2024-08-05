@@ -285,9 +285,9 @@ export function MiniDrawer() {
                       }}
                     >
                       {index === 0 ? (
-                        <CalendarMonthIcon />
-                      ) : index === 1 ? (
                         <FactCheckIcon />
+                      ) : index === 1 ? (
+                        <CalendarMonthIcon />
                       ) : (
                         <RecentActorsIcon />
                       )}

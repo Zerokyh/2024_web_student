@@ -15,6 +15,7 @@ function App() {
           <Route element={<MiniDrawer />}>
             <Route path="/" Component={Home} />
             <Route path="/Login" Component={Login} />
+            {/* <Route path="/UserRegister" Component={UserRegister} /> */}
             <Route path="/PassiveCheck" Component={PassiveCheck} />
             <Route
               path="/AttendanceDashboard"
