@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Consulting = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [StudentData, setStudentData] = useState<any[]>([]);
   const [Course, setCourse] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -18,9 +18,9 @@ const Consulting = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/data")
+      .get("http://localhost:8001/consulting_students_list")
       .then((response) => {
-        setData(response.data);
+        setStudentData(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
@@ -66,20 +66,22 @@ const Consulting = () => {
             <li className="w-20">이름</li>
             <li className="w-20">성적</li>
             <li className="w-20">출석률</li>
-            <li className="w-20">상담일자</li>
+            <li className="w-20">상담여부</li>
           </div>
           <div className="w-full flex list-none justify-around">
             <ul className="w-full">
-              {data.map((item, index) => (
+              {StudentData.map((item, index) => (
                 <li
                   key={index}
-                  className="w-full flex justify-around text-center"
+                  className="w-full flex justify-around text-center cursor-pointer hover:bg-slate-100"
                 >
-                  <span className="w-20">{item.id}</span>
-                  <span className="w-20">{item.name}</span>
-                  <span className="w-20">{item.phone}</span>
-                  <span className="w-20">{item.address}</span>
-                  <span className="w-20">{item.address}</span>
+                  <span className="w-20">{item.student_id}</span>
+                  <span className="w-20">{item.student_name}</span>
+                  <span className="w-20">{item.grade}</span>
+                  <span className="w-20">{item.attendance_rate}%</span>
+                  <span className="w-20">
+                    {!item.counselingstatus ? "상담완료" : "상담필요"}
+                  </span>
                 </li>
               ))}
             </ul>
