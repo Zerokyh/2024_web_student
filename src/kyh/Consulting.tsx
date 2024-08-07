@@ -9,9 +9,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Consulting = () => {
-  const [StudentData, setStudentData] = useState<any[]>([]);
-  const [Course, setCourse] = useState<string>("");
-  const [CourseData, setCourseData] = useState<any[]>([]);
+  const [studentData, setStudentData] = useState<any[]>([]);
+  const [course, setCourse] = useState<string>("");
+  const [courseData, setCourseData] = useState<any[]>([]);
   const [scheduleData, setScheduleData] = useState<any[]>([]);
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -100,11 +100,11 @@ const Consulting = () => {
             <Select
               labelId="select-course-label"
               id="select_Course"
-              value={Course}
+              value={course}
               label="Course"
               onChange={handleChange}
             >
-              {CourseData.map((item) => (
+              {courseData.map((item) => (
                 <MenuItem key={item.course_id} value={item.course_id}>
                   {item.course_name}
                 </MenuItem>
@@ -123,7 +123,7 @@ const Consulting = () => {
           </div>
           <div className="w-full flex list-none justify-around">
             <ul className="w-full">
-              {StudentData.map((item, index) => (
+              {studentData.map((item, index) => (
                 <li
                   key={index}
                   onClick={() => findStudent(item.student_id)}

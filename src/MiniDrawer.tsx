@@ -142,14 +142,25 @@ export function MiniDrawer() {
     setAnchorElUser(null);
   };
 
+  const handleProfile = () => {
+    navigate("/UserProfile");
+  };
+  const handleAccount = () => {
+    navigate("/UserAccount");
+  };
+
+  const handleDashboard = () => {
+    navigate("/UserDashboard");
+  };
+
   const handleLogout = () => {
     sessionStorage.removeItem("user_id");
+    sessionStorage.removeItem("user_pw");
     setIsLogin(false);
     navigate("/");
   };
 
   React.useEffect(() => {
-    const userId = sessionStorage.getItem("user_id");
     setIsLogin(userId !== null);
   }, [setIsLogin]);
 
@@ -199,17 +210,27 @@ export function MiniDrawer() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting, i) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      {i === 3 ? (
-                        <Typography onClick={handleLogout}>
+                  {settings.map((setting, i) => {
+                    const clickHandlers = [
+                      handleProfile,
+                      handleAccount,
+                      handleDashboard,
+                      handleLogout,
+                    ];
+
+                    const handleClick = clickHandlers[i] || null;
+
+                    return (
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography
+                          onClick={handleClick}
+                          textAlign={!handleClick ? "center" : undefined}
+                        >
                           {setting}
                         </Typography>
-                      ) : (
-                        <Typography textAlign="center">{setting}</Typography>
-                      )}
-                    </MenuItem>
-                  ))}
+                      </MenuItem>
+                    );
+                  })}
                 </Menu>
               </Box>
             ))

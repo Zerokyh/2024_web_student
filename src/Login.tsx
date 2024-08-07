@@ -15,6 +15,7 @@ const Login = () => {
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);
+        sessionStorage.setItem("user_pw", password);
         setIsLogin(true);
       })
       .then(() => {
