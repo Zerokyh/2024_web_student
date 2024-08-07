@@ -28,7 +28,7 @@ const Consulting = () => {
         setScheduleData([]);
       })
       .catch((error) => {
-        console.error("학생 데이터를 가져오는 중 오류가 발생했습니다!", error);
+        console.error("수업 데이터를 가져오는 중 오류가 발생했습니다!", error);
       });
   };
 
@@ -93,7 +93,7 @@ const Consulting = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-studentMaxWidthRight h-studentMaxHight">
+      <div className="flex flex-col w-studentMaxWidthRight h-studentMaxHight gap-2">
         <div className="w-60">
           <FormControl fullWidth>
             <InputLabel id="select-course-label">Course</InputLabel>
