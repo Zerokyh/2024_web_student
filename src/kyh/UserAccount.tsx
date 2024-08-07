@@ -64,10 +64,14 @@ const UserAccount = () => {
           );
         });
     }
-  }, [userId, oldPassword]);
+  }, [userId, oldPassword, userPw]);
 
   useEffect(() => {
-    setIsCheckNewPWD(newPassword === checkNewPassword);
+    if (newPassword === "" || checkNewPassword === "") {
+      setIsCheckNewPWD(false);
+    } else {
+      setIsCheckNewPWD(newPassword === checkNewPassword);
+    }
   }, [newPassword, checkNewPassword]);
 
   return (
