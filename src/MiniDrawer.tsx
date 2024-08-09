@@ -113,7 +113,7 @@ export function MiniDrawer() {
   const navigate = useNavigate();
   const { isLogin, setIsLogin } = useThemeStore();
   const { pathname } = useLocation();
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const settings = ["Profile", "Account", "Logout"];
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -147,10 +147,6 @@ export function MiniDrawer() {
   };
   const handleAccount = () => {
     navigate("/UserAccount");
-  };
-
-  const handleDashboard = () => {
-    navigate("/UserDashboard");
   };
 
   const handleLogout = () => {
@@ -214,7 +210,6 @@ export function MiniDrawer() {
                     const clickHandlers = [
                       handleProfile,
                       handleAccount,
-                      handleDashboard,
                       handleLogout,
                     ];
 

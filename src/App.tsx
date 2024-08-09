@@ -6,7 +6,6 @@ import PassiveCheck from "./james/PassiveCheck";
 import AttendanceDashboard from "./kde/AttendanceDashboard";
 import Login from "./Login";
 import Consulting from "./kyh/Consulting";
-import UserDashboard from "./kyh/UserDashboard";
 import UserProfile from "./kyh/UserProfile";
 import UserAccount from "./kyh/UserAccount";
 
@@ -21,7 +20,6 @@ function App() {
             {/* <Route path="/UserRegister" Component={UserRegister} /> */}
             <Route path="/UserProfile" Component={UserProfile} />
             <Route path="/UserAccount" Component={UserAccount} />
-            <Route path="/UserDashboard" Component={UserDashboard} />
             <Route path="/PassiveCheck" Component={PassiveCheck} />
             <Route
               path="/AttendanceDashboard"
