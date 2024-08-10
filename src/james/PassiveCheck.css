@@ -1,111 +1,112 @@
 .App {
-    text-align: center;
-  }
-  
-  .controls {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .student-search {
-    width: 200px;
-  }
-  
-  .date-controls {
-    display: flex;
-    align-items: center;
-  }
-  
-  .date-controls span {
-    margin: 0 10px;
-  }
-  
-  .statistics {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-  }
-  
-  .statistics p {
-    margin: 0;
-  }
-  
-  .total {
-    color: black;
-  }
-  
-  .present {
-    color: blue;
-  }
-  
-  .late {
-    color: orange;
-  }
-  
-  .absent {
-    color: red;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  .time-input {
-    width: 30px;
-    text-align: center;
-  }
-  
-  label {
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  label.active {
-    background-color: blue;
-    color: white;
-    padding: 3px 5px;
-    border-radius: 3px;
-  }
-  
-  .actions {
-    margin-top: 20px;
-  }
-  
-  .actions button {
-    margin-right: 10px;
-  }
-  
-  .status-buttons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-  }
-  
-  .status-buttons button {
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #fff;
-  }
-  
-  .status-buttons button.active {
-    background-color: blue;
-    color: white;
-  }
+  text-align: center;
+}
+
+.controls {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.student-search {
+  width: 200px;
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+}
+
+.date-controls span {
+  margin: 0 10px;
+}
+
+.statistics {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.statistics p {
+  margin: 0;
+}
+
+.total {
+  color: black;
+}
+
+.present {
+  color: blue;
+}
+
+.late {
+  color: orange;
+}
+
+.absent {
+  color: red;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.time-input {
+  width: 30px;
+  text-align: center;
+}
+
+label {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+label.active {
+  background-color: blue;
+  color: white;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.actions button {
+  margin-right: 10px;
+}
+
+.status-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.status-buttons button {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.status-buttons button.active {
+  background-color: blue;
+  color: white;
+}
