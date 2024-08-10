@@ -2,7 +2,7 @@ import MiniDrawer from "./MiniDrawer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Qrcode from "./Qrcode";
-// import PassiveCheck from "./james/PassiveCheck";
+import PassiveCheck from "./james/PassiveCheck";
 import AttendanceDashboard from "./kde/AttendanceDashboard";
 import Login from "./Login";
 import Consulting from "./kyh/Consulting";
@@ -20,7 +20,7 @@ function App() {
             {/* <Route path="/UserRegister" Component={UserRegister} /> */}
             <Route path="/UserProfile" Component={UserProfile} />
             <Route path="/UserAccount" Component={UserAccount} />
-            {/* <Route path="/PassiveCheck" Component={PassiveCheck} /> */}
+            <Route path="/PassiveCheck" Component={PassiveCheck} />
             <Route
               path="/AttendanceDashboard"
               Component={AttendanceDashboard}
