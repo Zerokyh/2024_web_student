@@ -4,8 +4,10 @@ import { format, addDays } from "date-fns";
 import axios from "axios";
 
 type Time = {
-  attendance: string;
-  leave: string;
+  attendanceHour: string;
+  attendanceMinute: string;
+  leaveHour: string;
+  leaveMinute: string;
 };
 
 type Status = {
@@ -51,6 +53,12 @@ const initialStudents: Student[] = [
 
 const classes = ["초등학교대비", "중학교대비", "고등학교대비", "수능대비"];
 
+
+
+
+
+
+
 const App: React.FC = () => {
   const [course, setCourse] = useState<string>("");
   const [courseData, setCourseData] = useState<any[]>([]);
@@ -65,88 +73,29 @@ const App: React.FC = () => {
     [key: string]: Student[];
   }>({});
 
-  // useEffect(() => {
-  //   const formattedDate = format(currentDate, "yyyy-MM-dd");
-  //   if (attendanceData[formattedDate]) {
-  //     setStudents(attendanceData[formattedDate]);
-  //   } else {
-  //     setStudents(initialStudents);
-  //   }
-  // }, [currentDate, attendanceData]);
-
-  const handleCourse = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedCourseId = event.target.value as string;
-    setCourse(selectedCourseId);
-    axios
-      .get(
-        `http://localhost:8001/passivecheck_students_list?course_id=${selectedCourseId}`
-      )
-      .then((response) => {
-        sessionStorage.setItem("course_id", selectedCourseId);
-        setStudentData(response.data);
-        // setScheduleData([]);
-      })
-      .catch((error) => {
-        console.error("수업 데이터를 가져오는 중 오류가 발생했습니다!", error);
-      });
-  };
-
-  //   const findStudent = (student_id: string) => {
-  //     setScheduleData([]);
-  //     axios
-  //       .get(`http://localhost:8001/student_schedule?student_id=${student_id}`)
-  //       .then((response) => {
-  //         sessionStorage.setItem("student_id", student_id);
-  //         setScheduleData(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("학생 데이터를 가져오는 중 오류가 발생했습니다!", error);
-  //       });
-  //   };
-
-  // 반 선택시 해당 course 데이터 받기
   useEffect(() => {
-    axios
-      .get("http://localhost:8001/course")
-      .then((response) => {
-        setCourseData(response.data);
-      })
-      .catch((error) => {
-        console.error(
-          "course 데이터를 가져오는 중 오류가 발생했습니다!",
-          error
-        );
-      });
-  }, []);
+    const formattedDate = format(currentDate, "yyyy-MM-dd");
+    if (attendanceData[formattedDate]) {
+      setStudents(attendanceData[formattedDate]);
+    } else {
+      setStudents(initialStudents);
+    }
+  }, [currentDate, attendanceData]);
 
-  // const handleClassChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   setClassType(event.target.value);
-  // };
+  const handleClassChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setClassType(event.target.value);
+  };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
   const handleSearch = () => {
-    axios
-      .post(
-        `http://localhost:8001/passivecheck_search_studentname?student_name=${studentName}`
-      )
-      .then((response) => {
-        sessionStorage.setItem("student_name", studentName);
-        setStudentData(response.data);
-        // setScheduleData([]);
-      })
-      .catch((error) => {
-        console.error("학생 데이터를 가져오는 중 오류가 발생했습니다!", error);
-      });
+    const filteredStudents = initialStudents.filter((student) =>
+      student.name.includes(searchQuery)
+    );
+    setStudents(filteredStudents);
   };
-  //   {
-  //   const filteredStudents = initialStudents.filter((student) =>
-  //     student.name.includes(searchQuery)
-  //   );
-  //   setStudents(filteredStudents);
-  // };
 
   const handleDateChange = (days: number) => {
     setCurrentDate(addDays(currentDate, days));
@@ -179,9 +128,10 @@ const App: React.FC = () => {
   const handleSave = () => {
     const formattedDate = format(currentDate, "yyyy-MM-dd");
     setAttendanceData({ ...attendanceData, [formattedDate]: students });
-
-    console.log(students);
+    console.log(students); // You can replace this with actual save logic
   };
+  
+
 
   const handleReset = () => {
     setStudents(initialStudents);
@@ -200,20 +150,19 @@ const App: React.FC = () => {
     <div className="App">
       <h1>학생 출석체크</h1>
       <div className="controls">
-        <select value={course} onChange={handleCourse}>
-          {courseData.map((cls) => (
-            <option key={cls.course_id} value={cls.course_id}>
-              {cls.course_name}
+        <select value={classType} onChange={handleClassChange}>
+          {classes.map((cls, index) => (
+            <option key={index} value={cls}>
+              {cls}
             </option>
           ))}
         </select>
         <input
           type="text"
           placeholder="학생 이름을 입력해주세요"
-          value={studentName}
-          onChange={(e) => {
-            setStudentName(e.target.value);
-          }}
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="student-search"
         />
         <button onClick={handleSearch}>검색</button>
         <div className="date-controls">
@@ -240,29 +189,16 @@ const App: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {studentData.map((student) => (
-            <tr key={student.student_id}>
-              <td>{student.student_id}</td>
-              <td>{student.student_name}</td>
-              {/* <td>
-                <input
-                  type="text"
-                  value={student.time.attendance}
-                  onChange={(e) =>
-                    handleChange(student.id, "time", {
-                      ...student.time,
-                      attendance: e.target.value,
-=======
           {students.map((student) => (
             <tr key={student.id}>
               <td>{student.id}</td>
               <td>
-                {student.name} ({student.school})
+                {student.student_name}
               </td>
-              <td>
+              {/* <td>
                 <input
                   type="text"
-                  value={student.time.attendanceHour}
+                  value={student.time.attendance}
                   onChange={(e) =>
                     handleChange(student.id, "time", {
                       ...student.time,
@@ -279,7 +215,6 @@ const App: React.FC = () => {
                     handleChange(student.id, "time", {
                       ...student.time,
                       attendanceMinute: e.target.value,
->>>>>>> 6810577148e0c4f2d8abe76b5ff2f24c7e11e4d7
                     })
                   }
                   className="time-input"
@@ -288,11 +223,23 @@ const App: React.FC = () => {
               <td>
                 <input
                   type="text"
-                  value={student.time.leave}
+                  value={student.time.leaveHour}
                   onChange={(e) =>
                     handleChange(student.id, "time", {
                       ...student.time,
-                      leave: e.target.value,
+                      leaveHour: e.target.value,
+                    })
+                  }
+                  className="time-input"
+                />
+                :
+                <input
+                  type="text"
+                  value={student.time.leaveMinute}
+                  onChange={(e) =>
+                    handleChange(student.id, "time", {
+                      ...student.time,
+                      leaveMinute: e.target.value,
                     })
                   }
                   className="time-input"
@@ -338,8 +285,7 @@ const App: React.FC = () => {
                     handleChange(student.id, "memo", e.target.value)
                   }
                 />
-
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>
