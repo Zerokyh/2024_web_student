@@ -1,0 +1,65 @@
+<리액트 + Node.js 팀 프로젝트>
+* 학생 출결 관리 프로그램
+	- 프론트엔드    : react + mui + axios
+	- 백앤드	     : node.js + express.js
+	- 데이터베이스 : 다음주에 ㄱㄱ
+	- 버전관리       : git
+
+#atomic #또다른구조 
+
+<Git>
+* Git : 게임처럼 Save해서 코드 관리해주는 프로그램
+- commit : 저장 시점
+- add : 저장 대상 선정
+- branch (나뭇가지)
+	- master branch : button -> 종류1 merge -> 종류2 merge
+	- 종류1 branch : img -> 위로
+	- 종류2 branch : layout
+	- 종류3 branch : slide
+
+
+<구성>
+왼쪽에 학생 등등 컨셉 정하기
+왼쪽 사이드바 -> 메인 페이지
+
+팀장 : 공통적으로 쓸 수 있는 컴포넌트 따로 만들기
+팀원 : 개인 페이지 역할 분담하고 통합?
+
+react-router-dom 으로 페이지 분담
+/main  
+/register  
+/enroll  
+/...
+
+mui에 있는 필요한 컴포넌트를 
+대략적으로 testing해서 하나로 통합해서 
+하나의 페이지로 동기화시키기 (만들기 아님)
+----------------------------
+git add .
+git commit -m 'save'
+git branch master
+git merge nickname
+git pull
+1. 충돌나면 코드 수정 후
+    git commit -m '수정함'
+    git push
+2. 충돌 안나면
+    git push
+
+git checkout nickname
+git merge master
+----------------------------
+
+<회원가입 페이지>
+아이디 (6-20자 - 유효성 검사, 중복확인)
+비밀번호(문자, 숫자, 특수문자 포함 8-20자 - 유효성 검사)
+비밀번호 확인(일치 - 유효성 검사)
+이름
+전화번호(숫자만 입력가능하게)
+생년월일(숫자 범위 좁히기)
+이메일 주소(뒤에 선택)
+듣등...
+가입하기, 취소 버튼
+가입 후 알림 메세지, 오류 메세지
+
+참고 사이트 : https://firstlife-note.tistory.com/75
