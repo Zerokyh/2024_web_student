@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useThemeStore from "../store/store";
 
 const UserAccount = () => {
   const [userData, setUserData] = useState<any[]>([]);
@@ -17,6 +18,7 @@ const UserAccount = () => {
   const [checkNewPassword, setCheckNewPassword] = useState("");
   const [isCheckOldPWD, setIsCheckOldPWD] = useState(false);
   const [isCheckNewPWD, setIsCheckNewPWD] = useState(false);
+  const { isLogin, setIsLogin } = useThemeStore();
   const userId = sessionStorage.getItem("user_id");
   const userPw = sessionStorage.getItem("user_pw");
   const navigate = useNavigate();
@@ -30,12 +32,15 @@ const UserAccount = () => {
         })
         .then((response) => {
           alert(response.data.message);
-          sessionStorage.setItem("user_pw", newPassword);
+          // sessionStorage.setItem("user_pw", newPassword);
           setOldPassword("");
           setNewPassword("");
           setCheckNewPassword("");
           setIsCheckOldPWD(false);
           setIsCheckNewPWD(false);
+          sessionStorage.removeItem("user_id");
+          sessionStorage.removeItem("user_pw");
+          setIsLogin(false);
           navigate("/Login");
         })
         .catch((error) => {
