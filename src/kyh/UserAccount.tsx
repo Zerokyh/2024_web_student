@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserAccount = () => {
   const [userData, setUserData] = useState<any[]>([]);
@@ -18,6 +19,7 @@ const UserAccount = () => {
   const [isCheckNewPWD, setIsCheckNewPWD] = useState(false);
   const userId = sessionStorage.getItem("user_id");
   const userPw = sessionStorage.getItem("user_pw");
+  const navigate = useNavigate();
 
   const handleChangePWD = () => {
     if (isCheckOldPWD && isCheckNewPWD) {
@@ -34,6 +36,7 @@ const UserAccount = () => {
           setCheckNewPassword("");
           setIsCheckOldPWD(false);
           setIsCheckNewPWD(false);
+          navigate("/Login");
         })
         .catch((error) => {
           if (error.response) {
