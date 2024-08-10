@@ -79,7 +79,7 @@ const App: React.FC = () => {
   //     setStudents(initialStudents);
   //   }
   // }, [currentDate, attendanceData]);
-
+  
 
   const handleCourse =(event: ChangeEvent<HTMLSelectElement>)=>{
     const selectedCourseId = event.target.value as string;
@@ -192,10 +192,12 @@ const App: React.FC = () => {
 
     console.log(students); 
   };
+  
 
-  // const handleReset = () => {
-  //   setStudents(initialStudents);
-  // };
+
+  const handleReset = () => {
+    setStudents(initialStudents);
+  };
 
   const total = students.length;
   const presentCount = students.filter(
@@ -264,47 +266,6 @@ const App: React.FC = () => {
                     handleChange(student.id, "time", {
                       ...student.time,
                       attendance: e.target.value,
-=======
-          {students.map((student) => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
-              <td>
-                {student.name} ({student.school})
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={student.time.attendanceHour}
-                  onChange={(e) =>
-                    handleChange(student.id, "time", {
-                      ...student.time,
-                      attendanceHour: e.target.value,
-                    })
-                  }
-                  className="time-input"
-                />
-                :
-                <input
-                  type="text"
-                  value={student.time.attendanceMinute}
-                  onChange={(e) =>
-                    handleChange(student.id, "time", {
-                      ...student.time,
-                      attendanceMinute: e.target.value,
->>>>>>> 6810577148e0c4f2d8abe76b5ff2f24c7e11e4d7
-                    })
-                  }
-                  className="time-input"
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={student.time.leave}
-                  onChange={(e) =>
-                    handleChange(student.id, "time", {
-                      ...student.time,
-                      leave: e.target.value,
                     })
                   }
                   className="time-input"
@@ -350,9 +311,7 @@ const App: React.FC = () => {
                     handleChange(student.id, "memo", e.target.value)
                   }
                 />
-
               </td> */}
-
             </tr>
           ))}
         </tbody>
