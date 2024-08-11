@@ -8,6 +8,7 @@ import Login from "./Login";
 import Consulting from "./kyh/Consulting";
 import UserProfile from "./kyh/UserProfile";
 import UserAccount from "./kyh/UserAccount";
+import UserRegister from "./ksy/UserRegister";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route element={<MiniDrawer />}>
             <Route path="/" Component={Home} />
             <Route path="/Login" Component={Login} />
-            {/* <Route path="/UserRegister" Component={UserRegister} /> */}
+            <Route path="/UserRegister" Component={UserRegister} />
             <Route path="/UserProfile" Component={UserProfile} />
             <Route path="/UserAccount" Component={UserAccount} />
             <Route path="/PassiveCheck" Component={PassiveCheck} />
