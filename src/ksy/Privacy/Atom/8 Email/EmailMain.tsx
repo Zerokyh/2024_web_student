@@ -12,6 +12,10 @@ const EmailMain = () => {
       && /[@]/.test(email)
       && /\.(com|net|kr)/.test(email);
     setIsValid(valid);
+
+    if (valid) {
+      sessionStorage.setItem("name_data", email);
+    }
   }, [email]);
 
   return (

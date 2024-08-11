@@ -5,23 +5,28 @@ import PasswordTempAlert from "./PasswordUseAlert";
 const PasswordMain = () => {
   const [password, setPassword] = useState<string>("");
   const [passwordCheck, setPasswordCheck] = useState<string>("");
-  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true); // 비밀번호 유효성 검사 상태
-  const [isPasswordMatch, setIsPasswordMatch] = useState<boolean>(true);  // 비밀번호 일치 여부 상태
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  const [isPasswordMatch, setIsPasswordMatch] = useState<boolean>(true);
 
-  // 비밀번호 유효성 검사
   useEffect(() => {
     const valid = password.length >= 8 && password.length <= 20 && /[!@#$%^&*]/.test(password);
     setIsPasswordValid(valid);
   }, [password]);
 
-  // 비밀번호 확인 검사
   useEffect(() => {
     if (password === "" || passwordCheck === "") {
-      setIsPasswordMatch(true); // 비밀번호와 확인 비밀번호가 비어 있을 때는 유효성 검사를 통과하도록 설정
+      setIsPasswordMatch(true);
     } else {
-      setIsPasswordMatch(password === passwordCheck); // 두 비밀번호가 같으면 true, 다르면 false
+      setIsPasswordMatch(password === passwordCheck);
     }
   }, [password, passwordCheck]);
+
+  useEffect(() => {
+    if (isPasswordMatch && password && password != null) {
+      sessionStorage.setItem("pw_data", password);
+    }
+  }, [isPasswordMatch, password]);
+
   return (
       <div>
         <div className="flex">

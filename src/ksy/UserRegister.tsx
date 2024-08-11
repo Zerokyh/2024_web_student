@@ -14,7 +14,8 @@ const UserRegister = () => {
   return (
       <div className="flex-row justify-center text-center">
         <Title/>
-        <div className="p-20 border rounded max-w-fit text-start mx-auto">
+      <div className="p-20 border rounded max-w-fit text-start mx-auto">
+        <span className="text-red-500 text-xs flex justify-end">* 표시는 필수 항목입니다</span>
           <UserID/>
           <Account/>
           <Password/>

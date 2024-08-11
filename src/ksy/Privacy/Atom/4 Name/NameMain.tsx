@@ -9,6 +9,10 @@ const NameMain = () => {
   useEffect(() => {
     const valid = name.length >= 3;
     setIsValid(valid);
+
+    if (valid) {
+      sessionStorage.setItem("name_data", name);
+    }
   }, [name]);
 
   return (

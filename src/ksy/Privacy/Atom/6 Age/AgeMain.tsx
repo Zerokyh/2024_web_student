@@ -9,6 +9,10 @@ const AgeMain = () => {
   useEffect(() => {
     const valid = /^[0-9]*$/.test(age) && age.length >= 1;
     setIsValid(valid);
+
+    if (valid) {
+      sessionStorage.setItem("age_data", age);
+    }
   }, [age]);
 
   return (

@@ -1,9 +1,11 @@
 const IdTitle = () => {
 
     return (
-        <span className="font-bold mr-3">
-        아이디
+      <div>
+        <span className="font-bold mr-3 flex">
+        아이디<p className="p-0 m-0 text-red-500">*</p>
         </span>
+      </div>
     );
   };
   

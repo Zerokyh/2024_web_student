@@ -10,6 +10,10 @@ const PhoneMain = () => {
     const valid = phone.length >= 10 && phone.length <= 15 &&
     !/[-]/.test(phone) && /^[0-9]*$/.test(phone);
     setIsValid(valid);
+
+    if (valid) {
+      sessionStorage.setItem("phone_data", phone);
+    }
   }, [phone]);
 
   return (
