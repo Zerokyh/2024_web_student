@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = () => {
     axios
       .post(
-        "https://studentbserver-d8byawhchugpamg3.koreacentral-01.azurewebsites.net/api/login",
+        "https://studentbserver-d8byawhchugpamg3.koreacentral-01.azurewebsites.net:3306/api/login",
         {
           id,
           password,
@@ -29,9 +29,14 @@ const Login = () => {
       })
       .catch((error) => {
         if (error.response) {
-          alert(error.response.data.message);
+          console.error("Error Response:", error.response);
+          alert(error.response.data.message || "An error occurred");
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+          alert("No response from server");
         } else {
-          alert("An error occurred");
+          console.error("Error Message:", error.message);
+          alert("Error occurred: " + error.message);
         }
       });
   };
