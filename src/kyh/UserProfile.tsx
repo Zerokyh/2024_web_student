@@ -17,7 +17,7 @@ const UserProfile = () => {
   useEffect(() => {
     axios
       .get(
-        `http://studentdb.mysql.database.azure.com:8001/profile?account=${userId}`
+        `https://orange-pebble-038562e00.5.azurestaticapps.net:8001/profile?account=${userId}`
       )
       .then((response) => {
         setUserData(response.data);

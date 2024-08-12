@@ -20,7 +20,7 @@ const Consulting = () => {
     sessionStorage.removeItem("student_id");
     axios
       .get(
-        `http://studentdb.mysql.database.azure.com:8001/consulting_students_list?course_id=${selectedCourseId}`
+        `https://orange-pebble-038562e00.5.azurestaticapps.net:8001/consulting_students_list?course_id=${selectedCourseId}`
       )
       .then((response) => {
         sessionStorage.setItem("course_id", selectedCourseId);
@@ -35,7 +35,9 @@ const Consulting = () => {
   const findStudent = (student_id: string) => {
     setScheduleData([]);
     axios
-      .get(`http://localhost:8001/student_schedule?student_id=${student_id}`)
+      .get(
+        `https://orange-pebble-038562e00.5.azurestaticapps.net:8001/student_schedule?student_id=${student_id}`
+      )
       .then((response) => {
         sessionStorage.setItem("student_id", student_id);
         setScheduleData(response.data);
@@ -48,7 +50,7 @@ const Consulting = () => {
   // 반 선택시 해당 course 데이터 받기
   useEffect(() => {
     axios
-      .get("http://localhost:8001/course")
+      .get("https://orange-pebble-038562e00.5.azurestaticapps.net:8001/course")
       .then((response) => {
         setCourseData(response.data);
       })

@@ -27,7 +27,7 @@ const UserAccount = () => {
     if (isCheckOldPWD && isCheckNewPWD) {
       axios
         .post(
-          `http://studentdb.mysql.database.azure.com:8001/account/changepwd`,
+          `https://orange-pebble-038562e00.5.azurestaticapps.net:8001/account/changepwd`,
           {
             account: userId,
             newPassword,
@@ -61,7 +61,9 @@ const UserAccount = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`http://localhost:8001/account?account=${userId}`)
+        .get(
+          `https://orange-pebble-038562e00.5.azurestaticapps.net/account?account=${userId}`
+        )
         .then((response) => {
           setUserData(response.data);
           if (response.data.length > 0) {
