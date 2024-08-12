@@ -176,7 +176,7 @@ export function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            <div className="font-nexon">수강 신청 프로그램</div>
+            <div className="font-nexon">학생 출결 관리 프로그램</div>
           </Typography>
           {isLogin ? (
             (sessionStorage.removeItem("student_id"),
