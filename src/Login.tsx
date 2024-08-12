@@ -28,8 +28,6 @@ const Login = () => {
         sessionStorage.setItem("user_id", id);
         sessionStorage.setItem("user_pw", password);
         setIsLogin(true);
-      })
-      .then(() => {
         navigate(state);
       })
       .catch((error) => {
