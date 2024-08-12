@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = () => {
     axios
       .post(
-        "https://studentbserver-d8byawhchugpamg3.koreacentral-01.azurewebsites.net/api/login",
+        "https://studentbserver-d8byawhchugpamg3.koreacentral-01.azurewebsites.net:3306/api/login",
         {
           id,
           password,
