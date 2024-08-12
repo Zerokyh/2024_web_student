@@ -26,13 +26,10 @@ const UserAccount = () => {
   const handleChangePWD = () => {
     if (isCheckOldPWD && isCheckNewPWD) {
       axios
-        .post(
-          `https://orange-pebble-038562e00.5.azurestaticapps.net:8001/account/changepwd`,
-          {
-            account: userId,
-            newPassword,
-          }
-        )
+        .post(`/api/account/changepwd`, {
+          account: userId,
+          newPassword,
+        })
         .then((response) => {
           alert(response.data.message);
           // sessionStorage.setItem("user_pw", newPassword);
@@ -61,9 +58,7 @@ const UserAccount = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(
-          `https://orange-pebble-038562e00.5.azurestaticapps.net/account?account=${userId}`
-        )
+        .get(`/api/account?account=${userId}`)
         .then((response) => {
           setUserData(response.data);
           if (response.data.length > 0) {

@@ -11,13 +11,10 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
-      .post(
-        "https://orange-pebble-038562e00.5.azurestaticapps.net:8001/login",
-        {
-          id,
-          password,
-        }
-      )
+      .post("/api/login", {
+        id,
+        password,
+      })
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);

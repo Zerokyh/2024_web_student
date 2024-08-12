@@ -16,9 +16,7 @@ const UserProfile = () => {
   console.log(userId);
   useEffect(() => {
     axios
-      .get(
-        `https://orange-pebble-038562e00.5.azurestaticapps.net:8001/profile?account=${userId}`
-      )
+      .get(`/api/profile?account=${userId}`)
       .then((response) => {
         setUserData(response.data);
       })
