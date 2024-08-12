@@ -20,7 +20,7 @@ const Consulting = () => {
     sessionStorage.removeItem("student_id");
     axios
       .get(
-        `http://localhost:8001/consulting_students_list?course_id=${selectedCourseId}`
+        `http://studentdb.mysql.database.azure.com:8001/consulting_students_list?course_id=${selectedCourseId}`
       )
       .then((response) => {
         sessionStorage.setItem("course_id", selectedCourseId);

@@ -11,7 +11,10 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
-      .post("http://localhost:8001/login", { id, password })
+      .post("http://studentdb.mysql.database.azure.com:8001/login", {
+        id,
+        password,
+      })
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);

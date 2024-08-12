@@ -26,10 +26,13 @@ const UserAccount = () => {
   const handleChangePWD = () => {
     if (isCheckOldPWD && isCheckNewPWD) {
       axios
-        .post(`http://localhost:8001/account/changepwd`, {
-          account: userId,
-          newPassword,
-        })
+        .post(
+          `http://studentdb.mysql.database.azure.com:8001/account/changepwd`,
+          {
+            account: userId,
+            newPassword,
+          }
+        )
         .then((response) => {
           alert(response.data.message);
           // sessionStorage.setItem("user_pw", newPassword);
