@@ -11,13 +11,10 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
-      .post(
-        "https://studentbserver-d8byawhchugpamg3.koreacentral-01.azurewebsites.net/api/login",
-        {
-          id,
-          password,
-        }
-      )
+      .post("/api/login", {
+        id,
+        password,
+      })
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);
