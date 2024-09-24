@@ -19,9 +19,7 @@ const Consulting = () => {
     setCourse(selectedCourseId);
     sessionStorage.removeItem("student_id");
     axios
-      .get(
-        `http://localhost:8001/consulting_students_list?course_id=${selectedCourseId}`
-      )
+      .get(`/api/consulting_students_list?course_id=${selectedCourseId}`)
       .then((response) => {
         sessionStorage.setItem("course_id", selectedCourseId);
         setStudentData(response.data);
@@ -35,7 +33,7 @@ const Consulting = () => {
   const findStudent = (student_id: string) => {
     setScheduleData([]);
     axios
-      .get(`http://localhost:8001/student_schedule?student_id=${student_id}`)
+      .get(`/api/student_schedule?student_id=${student_id}`)
       .then((response) => {
         sessionStorage.setItem("student_id", student_id);
         setScheduleData(response.data);
@@ -48,7 +46,7 @@ const Consulting = () => {
   // 반 선택시 해당 course 데이터 받기
   useEffect(() => {
     axios
-      .get("http://localhost:8001/course")
+      .get("/api/course")
       .then((response) => {
         setCourseData(response.data);
       })

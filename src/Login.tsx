@@ -21,15 +21,18 @@ const Login = () => {
         sessionStorage.setItem("user_id", id);
         sessionStorage.setItem("user_pw", password);
         setIsLogin(true);
-      })
-      .then(() => {
         navigate(state);
       })
       .catch((error) => {
         if (error.response) {
-          alert(error.response.data.message);
+          console.error("Error Response:", error.response);
+          alert(error.response.data.message || "An error occurred");
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+          alert("No response from server");
         } else {
-          alert("An error occurred");
+          console.error("Error Message:", error.message);
+          alert("Error occurred: " + error.message);
         }
       });
   };

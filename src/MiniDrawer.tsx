@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-
 import {
   styled,
   useTheme,
@@ -31,7 +30,6 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import AccessAlarmsIcon from "@mui/icons-material/AccessAlarms";
-
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import useThemeStore from "./store/store";
@@ -178,7 +176,7 @@ export function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            <div className="font-nexon">수강 신청 프로그램</div>
+            <div className="font-nexon">학생 출결 관리 프로그램</div>
           </Typography>
           {isLogin ? (
             (sessionStorage.removeItem("student_id"),

@@ -16,7 +16,7 @@ const UserProfile = () => {
   console.log(userId);
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/profile?account=${userId}`)
+      .get(`/api/profile?account=${userId}`)
       .then((response) => {
         setUserData(response.data);
       })

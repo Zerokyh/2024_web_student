@@ -26,7 +26,7 @@ const UserAccount = () => {
   const handleChangePWD = () => {
     if (isCheckOldPWD && isCheckNewPWD) {
       axios
-        .post(`http://localhost:8001/account/changepwd`, {
+        .post(`/api/account/changepwd`, {
           account: userId,
           newPassword,
         })
@@ -58,7 +58,7 @@ const UserAccount = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`http://localhost:8001/account?account=${userId}`)
+        .get(`/api/account?account=${userId}`)
         .then((response) => {
           setUserData(response.data);
           if (response.data.length > 0) {

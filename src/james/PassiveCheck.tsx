@@ -31,8 +31,8 @@ type StatusField = keyof Status;
 const initialStudents: Student[] = [
   {
     id: 1,
-    name: "김인성",
-    school: "반포초등학교",
+    name: "",
+    school: "",
     time: {
       attendance: "",
       leave: "",
@@ -49,30 +49,27 @@ const initialStudents: Student[] = [
   },
 ];
 
-const classes = ["초등학교대비", "중학교대비", "고등학교대비", "수능대비"];
-
 const App: React.FC = () => {
   const [course, setCourse] = useState<string>("");
   const [courseData, setCourseData] = useState<any[]>([]);
   const [students, setStudents] = useState<Student[]>(initialStudents);
-  // const [classType, setClassType] = useState<string>(classes[0]);
-  const [searchQuery, setSearchQuery] = useState<string>("");
   const [studentData, setStudentData] = useState<any[]>([]);
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const [scheduleData, setScheduleData] = useState<any[]>([]);
   const [studentName, setStudentName] = useState<string>("");
   const [attendanceData, setAttendanceData] = useState<{
     [key: string]: Student[];
   }>({});
 
-  // useEffect(() => {
-  //   const formattedDate = format(currentDate, "yyyy-MM-dd");
-  //   if (attendanceData[formattedDate]) {
-  //     setStudents(attendanceData[formattedDate]);
-  //   } else {
-  //     setStudents(initialStudents);
-  //   }
-  // }, [currentDate, attendanceData]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8001/course")
+      .then((response) => {
+        setCourseData(response.data);
+      })
+      .catch((error) => {
+        console.error("course 데이터를 가져오는 중 오류가 발생했습니다!", error);
+      });
+  }, []);
 
   const handleCourse = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedCourseId = event.target.value as string;
@@ -83,48 +80,23 @@ const App: React.FC = () => {
       )
       .then((response) => {
         sessionStorage.setItem("course_id", selectedCourseId);
-        setStudentData(response.data);
-        // setScheduleData([]);
+        const studentsWithTime = response.data.map((student: any) => ({
+          ...student,
+          time: student.time || { attendance: "", leave: "" }, // time 필드가 없을 경우 기본값 설정
+          status: student.status || {
+            present: false,
+            late: false,
+            absent: false,
+            leave: false,
+            earlyLeave: false,
+            runaway: false,
+          }, // status 필드가 없을 경우 기본값 설정
+        }));
+        setStudentData(studentsWithTime);
       })
       .catch((error) => {
         console.error("수업 데이터를 가져오는 중 오류가 발생했습니다!", error);
       });
-  };
-
-  //   const findStudent = (student_id: string) => {
-  //     setScheduleData([]);
-  //     axios
-  //       .get(`http://localhost:8001/student_schedule?student_id=${student_id}`)
-  //       .then((response) => {
-  //         sessionStorage.setItem("student_id", student_id);
-  //         setScheduleData(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("학생 데이터를 가져오는 중 오류가 발생했습니다!", error);
-  //       });
-  //   };
-
-  // 반 선택시 해당 course 데이터 받기
-  useEffect(() => {
-    axios
-      .get("http://localhost:8001/course")
-      .then((response) => {
-        setCourseData(response.data);
-      })
-      .catch((error) => {
-        console.error(
-          "course 데이터를 가져오는 중 오류가 발생했습니다!",
-          error
-        );
-      });
-  }, []);
-
-  // const handleClassChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   setClassType(event.target.value);
-  // };
-
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
   };
 
   const handleSearch = () => {
@@ -134,19 +106,24 @@ const App: React.FC = () => {
       )
       .then((response) => {
         sessionStorage.setItem("student_name", studentName);
-        setStudentData(response.data);
-        // setScheduleData([]);
+        const studentsWithTime = response.data.map((student: any) => ({
+          ...student,
+          time: student.time || { attendance: "", leave: "" }, // time 필드가 없을 경우 기본값 설정
+          status: student.status || {
+            present: false,
+            late: false,
+            absent: false,
+            leave: false,
+            earlyLeave: false,
+            runaway: false,
+          }, // status 필드가 없을 경우 기본값 설정
+        }));
+        setStudentData(studentsWithTime);
       })
       .catch((error) => {
         console.error("학생 데이터를 가져오는 중 오류가 발생했습니다!", error);
       });
   };
-  //   {
-  //   const filteredStudents = initialStudents.filter((student) =>
-  //     student.name.includes(searchQuery)
-  //   );
-  //   setStudents(filteredStudents);
-  // };
 
   const handleDateChange = (days: number) => {
     setCurrentDate(addDays(currentDate, days));
@@ -240,66 +217,79 @@ const App: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {studentData.map((student) => (
-            <tr key={student.student_id}>
-              <td>{student.student_id}</td>
-              <td>{student.student_name}</td>
-              {/* <td>
-                <input
-                  type="text"
-                  value={student.time.attendance}
-                  onChange={(e) =>
-                    handleChange(student.id, "time", {
-                      ...student.time,
-                      attendance: e.target.value,
-                    })
-                  }
-                  className="time-input"
-                />
-              </td>
-              <td className="status-buttons">
-                {(
-                  [
-                    "present",
-                    "late",
-                    "absent",
-                    "leave",
-                    "earlyLeave",
-                    "runaway",
-                  ] as StatusField[]
-                ).map((statusField) => (
-                  <button
-                    key={statusField}
-
-                    className={student.status[statusField] ? `active ${statusField}` : ""}
-
-                    onClick={() => handleStatusChange(student.id, statusField)}
-                  >
-                    {statusField === "present"
-                      ? "출석"
-                      : statusField === "late"
-                      ? "지각"
-                      : statusField === "absent"
-                      ? "결석"
-                      : statusField === "leave"
-                      ? "귀가"
-                      : statusField === "earlyLeave"
-                      ? "조퇴"
-                      : "도망"}
-                  </button>
-                ))}
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={student.memo}
-                  onChange={(e) =>
-                    handleChange(student.id, "memo", e.target.value)
-                  }
-                />
-              </td> */}
-            </tr>
-          ))}
+          {studentData.map((student) => {
+            const time = student.time || { attendance: "", leave: "" }; // time 필드가 없을 경우 기본값 설정
+            return (
+              <tr key={student.student_id}>
+                <td>{student.student_id}</td>
+                <td>{student.student_name}</td>
+                <td>
+                  <input
+                    type="text"
+                    value={time.attendance}
+                    onChange={(e) =>
+                      handleChange(student.student_id, "time", {
+                        ...time,
+                        attendance: e.target.value,
+                      })
+                    }
+                    className="time-input"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={time.leave}
+                    onChange={(e) =>
+                      handleChange(student.student_id, "time", {
+                        ...time,
+                        leave: e.target.value,
+                      })
+                    }
+                    className="time-input"
+                  />
+                </td>
+                <td className="status-buttons">
+                  {(["present", "late", "absent", "leave", "earlyLeave", "runaway"] as StatusField[]).map(
+                    (statusField) => (
+                      <button
+                        key={statusField}
+                        className={
+                          student.status[statusField]
+                            ? `active ${statusField}`
+                            : ""
+                        }
+                        onClick={() =>
+                          handleStatusChange(student.student_id, statusField)
+                        }
+                      >
+                        {statusField === "present"
+                          ? "출석"
+                          : statusField === "late"
+                          ? "지각"
+                          : statusField === "absent"
+                          ? "결석"
+                          : statusField === "leave"
+                          ? "귀가"
+                          : statusField === "earlyLeave"
+                          ? "조퇴"
+                          : "도망"}
+                      </button>
+                    )
+                  )}
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={student.memo}
+                    onChange={(e) =>
+                      handleChange(student.student_id, "memo", e.target.value)
+                    }
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className="actions">
