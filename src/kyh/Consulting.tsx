@@ -19,7 +19,9 @@ const Consulting = () => {
     setCourse(selectedCourseId);
     sessionStorage.removeItem("student_id");
     axios
-      .get(`/api/consulting_students_list?course_id=${selectedCourseId}`)
+      .get(
+        `https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/consulting_students_list?course_id=${selectedCourseId}`
+      )
       .then((response) => {
         sessionStorage.setItem("course_id", selectedCourseId);
         setStudentData(response.data);
@@ -33,7 +35,9 @@ const Consulting = () => {
   const findStudent = (student_id: string) => {
     setScheduleData([]);
     axios
-      .get(`/api/student_schedule?student_id=${student_id}`)
+      .get(
+        `https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/student_schedule?student_id=${student_id}`
+      )
       .then((response) => {
         sessionStorage.setItem("student_id", student_id);
         setScheduleData(response.data);
@@ -46,7 +50,9 @@ const Consulting = () => {
   // 반 선택시 해당 course 데이터 받기
   useEffect(() => {
     axios
-      .get("/api/course")
+      .get(
+        "https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/course"
+      )
       .then((response) => {
         setCourseData(response.data);
       })
