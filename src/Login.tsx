@@ -11,7 +11,11 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
-      .post("http://localhost:8001/login", { id, password })
+      // .post("http://localhost:8001/login", { id, password })
+      .post(
+        "https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/login",
+        { id, password }
+      )
       .then((response) => {
         alert(response.data.message);
         sessionStorage.setItem("user_id", id);
