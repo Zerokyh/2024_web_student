@@ -13,7 +13,7 @@ const Login = () => {
     axios
       // .post("http://localhost:8001/login", { id, password })
       .post(
-        "https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/login",
+        "https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/login",
         { id, password }
       )
       .then((response) => {
