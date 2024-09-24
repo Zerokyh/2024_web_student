@@ -16,7 +16,9 @@ const UserProfile = () => {
   console.log(userId);
   useEffect(() => {
     axios
-      .get(`/api/profile?account=${userId}`)
+      .get(
+        `https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/profile?account=${userId}`
+      )
       .then((response) => {
         setUserData(response.data);
       })

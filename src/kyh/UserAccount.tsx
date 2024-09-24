@@ -26,10 +26,13 @@ const UserAccount = () => {
   const handleChangePWD = () => {
     if (isCheckOldPWD && isCheckNewPWD) {
       axios
-        .post(`/api/account/changepwd`, {
-          account: userId,
-          newPassword,
-        })
+        .post(
+          `https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/account/changepwd`,
+          {
+            account: userId,
+            newPassword,
+          }
+        )
         .then((response) => {
           alert(response.data.message);
           // sessionStorage.setItem("user_pw", newPassword);
@@ -58,7 +61,9 @@ const UserAccount = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`/api/account?account=${userId}`)
+        .get(
+          `https://student-backend-f7gwhcfvgdhpffg2.koreasouth-01.azurewebsites.net/api/account?account=${userId}`
+        )
         .then((response) => {
           setUserData(response.data);
           if (response.data.length > 0) {
